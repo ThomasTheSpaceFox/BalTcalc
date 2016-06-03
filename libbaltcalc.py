@@ -40,10 +40,7 @@ def BTstrgetsort():
 #gets a sigle-trit balanced ternary number from the user an parses it based on various 
 #balanced ternary notation conventions. currently only the 1,0,T and +,0,- conventions.
 def BTstrgetsingle():
-	NUMPARS = raw_input('>:')
-	NUMPARS = NUMPARS.replace("1", "+").replace("T", "-")
-	for fstdig in NUMPARS:
+	NUMPX = BTstrgetsort()
+	for fstdig in NUMPX:
 		return (fstdig)
-		break
-	
 
