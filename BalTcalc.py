@@ -46,6 +46,3 @@ while USRENTRY!=("quit"):
 		print(HELPTEXT)
 	if (USRENTRY==("about") or USRENTRY==("version")):
 		print(ABOUTTEXT)
-	if (USRENTRY==("test") or USRENTRY==("test")):
-		numtoinv = libbaltcalc.BTstrgetsingle()
-		print(numtoinv)
