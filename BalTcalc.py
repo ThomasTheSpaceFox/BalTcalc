@@ -9,6 +9,7 @@ useable balanced ternary notation conventions:
 bt-dec/btdec/bttodec: convert a balanced ternary number to decimal
 invert/btinvert     : invert a balanced ternary number. 
    i.e. -+0+ would become +-0-
+add/btadd           : preform addition in balanced ternary
 help/?              : this help
 quit                : quit BalTcalc
 ''')
@@ -46,3 +47,11 @@ while USRENTRY!=("quit"):
 		print(HELPTEXT)
 	if (USRENTRY==("about") or USRENTRY==("version")):
 		print(ABOUTTEXT)
+	if (USRENTRY==("add") or USRENTRY==("addition")):
+		print("first number?")
+		numtoaddA = libbaltcalc.BTstrgetsort()
+		print("second number?")
+		numtoaddB = libbaltcalc.BTstrgetsort()
+		print(libbaltcalc.btadd(numtoaddA, numtoaddB))
+		
+		
