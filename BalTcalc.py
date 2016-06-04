@@ -7,6 +7,7 @@ useable balanced ternary notation conventions:
 
 -command(/altcommand(s))--:--description-
 bt-dec/btdec/bttodec: convert a balanced ternary number to decimal
+dec-bt/decbt/dectobt: convert a decimal number to balanced ternary
 invert/btinvert     : invert a balanced ternary number. 
    i.e. -+0+ would become +-0-
 add/btadd           : preform addition in balanced ternary
@@ -39,6 +40,11 @@ while USRENTRY!=("quit"):
 		print("number to convert?")
 		numtocon = libbaltcalc.BTstrgetsort()
 		print(libbaltcalc.BTTODEC(numtocon))
+	if (USRENTRY==("dec-bt") or USRENTRY==("decbt") or USRENTRY==("dectobt")):
+		print("number to convert?")
+		numtocon = raw_input('>:')
+		numtocon=int(numtocon)
+		print(libbaltcalc.DECTOBT(numtocon))
 	if (USRENTRY==("invert") or USRENTRY==("btinvert")):
 		print("number to invert?")
 		numtoinv = libbaltcalc.BTstrgetsort()

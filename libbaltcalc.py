@@ -11,6 +11,7 @@ import math
 
 def numflip(numtoflip):
 	return(numtoflip[::-1])
+
 #converts balanced ternary numbers to decimal.
 def BTTODEC(NUMTOCONV1):
 	FLIPPEDSTR1=(numflip(NUMTOCONV1))
@@ -25,6 +26,10 @@ def BTTODEC(NUMTOCONV1):
 		EXTRAP1 += 1
 	return (SUMDEC1)
 
+
+
+
+
 #inverts the positive and negative numerals in a balanced ternary number, 
 #(ie 1T0T would become T101 and vice versa)
 def BTINVERT(numtoinvert):
@@ -32,14 +37,38 @@ def BTINVERT(numtoinvert):
 	#print BTINV2
 	return (BTINV1)
 
+def trailzerostrip(numtostri):
+	pritokfg=0
+	#print ("argh -.-" + numtostri)
+	numtostri = numtostri.replace("-", "T").replace("+", "1")
+	#numtostri = (numflip(numtostri))
+	numretbankd=""
+	#print (numtostri)
+	allzero=1
+	for fnumt in numtostri:
+		if (fnumt=="T" or fnumt=="1"):
+			pritokfg=1
+			allzero=0
+		if pritokfg==1:
+			numretbankd = (numretbankd + fnumt)
+		if pritokfg==0:
+			nullbox=fnumt
+		#print (fnumt)
+	if allzero==1:
+		numretbankd="0"
+	numretbankd = numretbankd
+	#print (numretbankd.replace("T", "-").replace("1", "+"))
+	return (numretbankd.replace("T", "-").replace("1", "+"))
+
+
 
 
 #prodotype addition function.
 #eventually will add longer balanced ternary numbers.
 def btadd(numA, numB):
 	#check to ensure any final carries are preformed.
-	numA=("0" + numA)
-	numB=("0" + numB)
+	numA=("E" + numA)
+	numB=("E" + numB)
 	numA=(numflip(numA))
 	numB=(numflip(numB))
 	numAcnt=0
@@ -47,17 +76,23 @@ def btadd(numA, numB):
 	curregA=1
 	curregB=1
 	carry="0"
-	resbatch=""
+	eotA=0
+	eotB=0
+	resbt=""
 	for anA in numA:
 		numAcnt += 1
 	for anB in numB:
 		numBcnt += 1
 	if (numAcnt > numBcnt):
 		forlist = numA
+		overload=numAcnt
 	if (numAcnt < numBcnt):
 		forlist = numB
+		overload=numBcnt
 	if (numAcnt==numBcnt):
 		forlist = numA
+		overload=numAcnt
+	overcnt=1
 	for dxpink in forlist:
 		loopregA=1
 		loopregB=1
@@ -78,97 +113,103 @@ def btadd(numA, numB):
 		#print ("A:" + Aval + str(returnedA))
 		#print ("B:" + Bval + str(returnedB))
 		#Aval=+ rules:
+		if Aval=="E":
+			eotA=1
+			Aval="0"
+		if Bval=="E":
+			eotB=1
+			Bval="0"
 		if (Aval=="+" and Bval=="+"):
 			if carry=="0":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="+"
 			elif carry=="+":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="+"
 			elif carry=="-":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="0"
 		elif (Aval=="+" and Bval=="0"):
 			if carry=="0":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="0"
 			elif carry=="+":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="+"
 			elif carry=="-":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="0"
 		elif (Aval=="+" and Bval=="-"):
 			if carry=="0":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="0"
 			elif carry=="+":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="0"
 			elif carry=="-":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="0"
 		#Aval=- rules
 		elif (Aval=="-" and Bval=="-"):
 			if carry=="0":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="-"
 			elif carry=="-":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="-"
 			elif carry=="+":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="0"
 		elif (Aval=="-" and Bval=="0"):
 			if carry=="0":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="0"
 			elif carry=="+":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="0"
 			elif carry=="-":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="-"
 		elif (Aval=="-" and Bval=="+"):
 			if carry=="0":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="0"
 			elif carry=="+":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="0"
 			elif carry=="-":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="0"
 		#Aval=0 rules
 		elif (Aval=="0" and Bval=="0"):
 			if carry=="0":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="0"
 			elif carry=="+":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="0"
 			elif carry=="-":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="0"
 		elif (Aval=="0" and Bval=="-"):
 			if carry=="0":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="0"
 			elif carry=="+":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="0"
 			elif carry=="-":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="-"
 		elif (Aval=="0" and Bval=="+"):
 			if carry=="0":
-				resbatch = ("+" + resbatch)
+				resbt = ("+" + resbt)
 				carry="0"
 			elif carry=="+":
-				resbatch = ("-" + resbatch)
+				resbt = ("-" + resbt)
 				carry="+"
 			elif carry=="-":
-				resbatch = ("0" + resbatch)
+				resbt = ("0" + resbt)
 				carry="0"
 		curregA += 1
 		curregB += 1
@@ -176,9 +217,37 @@ def btadd(numA, numB):
 		Bval="0"
 		returnedA=0
 		returnedB=0
-	return (resbatch)
-	
+	#print ()
+	buzzt=trailzerostrip(str(resbt))
+	vexping=str(buzzt)
+	return (buzzt)
 
+
+#count up based Decimal to balanced ternary converter.
+def DECTOBT(NUMTOCONV1):
+	decicnt=0
+	prevbtnum="0"
+	charlst1=str(NUMTOCONV1)
+	for fstdig in charlst1:
+		firstsym=fstdig
+		break
+	if firstsym=="-":
+		btcntdig="-"
+	elif firstsym!="-":
+		btcntdig="+"
+	#print("actual decimal count| BT count in decimal | BT count")
+	while decicnt!=NUMTOCONV1:
+		
+		#print (str(decicnt) + "|" +  str(libbaltcalc.BTTODEC(prevbtnum)) + "|" +  prevbtnum)
+		prevbtnum=(btadd(prevbtnum, btcntdig))
+		vixiestr=prevbtnum
+		if firstsym=="-":
+			decicnt -= 1
+		elif firstsym!="-":
+			decicnt += 1
+	return (vixiestr)
+
+#print(DECTOBT(19))
 
 #gets a balanced ternary number from the user an parses it based on various 
 #balanced ternary notation conventions. currently only the 1,0,T and +,0,- conventions.
