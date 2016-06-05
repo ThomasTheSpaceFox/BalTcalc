@@ -11,6 +11,7 @@ dec-bt/decbt/dectobt: convert a decimal number to balanced ternary
 invert/btinvert     : invert a balanced ternary number. 
    i.e. -+0+ would become +-0-
 add/btadd           : preform addition in balanced ternary
+mul/btmul           : preform multiplication in balanced ternary
 help/?              : this help
 quit                : quit BalTcalc
 ''')
@@ -53,11 +54,17 @@ while USRENTRY!=("quit"):
 		print(HELPTEXT)
 	if (USRENTRY==("about") or USRENTRY==("version")):
 		print(ABOUTTEXT)
-	if (USRENTRY==("add") or USRENTRY==("addition")):
+	if (USRENTRY==("add") or USRENTRY==("btadd")):
 		print("first number?")
 		numtoaddA = libbaltcalc.BTstrgetsort()
 		print("second number?")
 		numtoaddB = libbaltcalc.BTstrgetsort()
 		print(libbaltcalc.btadd(numtoaddA, numtoaddB))
+	if (USRENTRY==("mul") or USRENTRY==("btmul")):
+		print("first number?")
+		numtoaddA = libbaltcalc.BTstrgetsort()
+		print("second number?")
+		numtoaddB = libbaltcalc.BTstrgetsort()
+		print(libbaltcalc.btmul(numtoaddA, numtoaddB))
 		
 		

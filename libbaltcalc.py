@@ -27,7 +27,26 @@ def BTTODEC(NUMTOCONV1):
 	return (SUMDEC1)
 
 
+def DECTOBT(NUMTOCONV1):
+	digbat=""
+	while NUMTOCONV1 != 0:
+		if NUMTOCONV1 % 3 == 0:
+			#note_digit(0)
+			digbat=("0" + digbat)
+		elif NUMTOCONV1 % 3 == 1:
+			#note_digit(1)
+			digbat=("+" + digbat)
+		elif NUMTOCONV1 % 3 == 2:
+			#note_digit(-1)
+			digbat=("-" + digbat)
+		NUMTOCONV1 = (NUMTOCONV1 + 1) // 3
+	#print NUMTOCONV1
+	return(digbat)
+	
 
+
+#print(DECTOBT2(4476222555666))
+#print(BTTODEC(DECTOBT2(4476222555666)))
 
 
 #inverts the positive and negative numerals in a balanced ternary number, 
@@ -223,8 +242,36 @@ def btadd(numA, numB):
 	return (buzzt)
 
 
+
+# balanced ternary multiplication that heavily relies on the adder function.
+def btmul(numA, numB):
+	btresreg="0"
+	btcnt1="0"
+	for fstdig in numB:
+		firstsym=fstdig
+		break
+	for fstdig2 in numA:
+		firstsym2=fstdig2
+		break
+	while btcnt1!=numB:
+		if firstsym=="-":
+			btresreg=(btadd(numA, btresreg))
+		if firstsym=="+":
+			btresreg=(btadd(btresreg, numA))
+		
+		btcnt1=(btadd(btcnt1, firstsym))
+	#pollarity exemptions (fixes numbers not being correct pollarity.
+	if (fstdig=="-" and fstdig2=="-"):
+		return (BTINVERT(btresreg))
+	if (fstdig=="-" and fstdig2=="+"):
+		return (BTINVERT(btresreg))
+	return (btresreg)
+
+
+
+
 #count up based Decimal to balanced ternary converter.
-def DECTOBT(NUMTOCONV1):
+def DECTOBTold(NUMTOCONV1):
 	decicnt=0
 	prevbtnum="0"
 	charlst1=str(NUMTOCONV1)

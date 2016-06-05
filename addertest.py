@@ -41,14 +41,28 @@ def ctest(decnumtocountto):
 		decicnt -= 1
 		dicecnt -= 1
 
-btest(10001)
-ctest(-10)
+#btest(1234)
+#ctest(-10)
 
 #small test of the decinal to balanced ternary converter
-numA=(10000)
-print(numA)
-print(libbaltcalc.DECTOBT(numA))
-print(libbaltcalc.BTTODEC(libbaltcalc.DECTOBT(numA)))
+#numA=(10000)
+#print(numA)
+#print(libbaltcalc.DECTOBT(numA))
+#print(libbaltcalc.BTTODEC(libbaltcalc.DECTOBT(numA)))
+
+#test function for the multiplier to test integrity.
+def multest(numA, numB):
+	btres=(libbaltcalc.btmul(numA, numB))
+	print("(" + numA + ")*(" + numB + ")=(" + btres + ")")
+	print("(" + str(libbaltcalc.BTTODEC(numA)) + ")*(" + str(libbaltcalc.BTTODEC(numB)) + ")=(" + str(libbaltcalc.BTTODEC(btres)) + ")" + "\n")
+
+print ("\n")
+multest("-+", "-0")
+multest("-+", "+0")
+multest("+-", "-0")
+multest("+-", "+0")
+print ("please wait while i  crunch da numbers... :p")
+multest("+--+--000--", "+0+--++---")
 
 
 
