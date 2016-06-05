@@ -55,7 +55,6 @@ def multest(numA, numB):
 	btres=(libbaltcalc.btmul(numA, numB))
 	print("(" + numA + ")*(" + numB + ")=(" + btres + ")")
 	print("(" + str(libbaltcalc.BTTODEC(numA)) + ")*(" + str(libbaltcalc.BTTODEC(numB)) + ")=(" + str(libbaltcalc.BTTODEC(btres)) + ")" + "\n")
-
 print ("\n")
 multest("-+", "-0")
 multest("-+", "+0")
@@ -63,6 +62,5 @@ multest("+-", "-0")
 multest("+-", "+0")
 print ("please wait while i  crunch da numbers... :p")
 multest("+--+--000--", "+0+--++---")
-
 
 

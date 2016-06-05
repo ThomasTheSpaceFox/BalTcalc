@@ -12,11 +12,13 @@ invert/btinvert     : invert a balanced ternary number.
    i.e. -+0+ would become +-0-
 add/btadd           : preform addition in balanced ternary
 mul/btmul           : preform multiplication in balanced ternary
+sub/btsub           : preform subtraction in balanced ternary
+dev/btdev           : preform division in balanced ternary
 help/?              : this help
 quit                : quit BalTcalc
 ''')
 ABOUTTEXT=('''---about---
-BalTcalc v0.1
+BalTcalc v0.2
 (c)2016 Thomas Leathers
 
   BalTcalc is free software: you can redistribute it and/or modify
@@ -66,5 +68,17 @@ while USRENTRY!=("quit"):
 		print("second number?")
 		numtoaddB = libbaltcalc.BTstrgetsort()
 		print(libbaltcalc.btmul(numtoaddA, numtoaddB))
+	if (USRENTRY==("sub") or USRENTRY==("btsub")):
+		print("first number?")
+		numtoaddA = libbaltcalc.BTstrgetsort()
+		print("second number?")
+		numtoaddB = libbaltcalc.BTstrgetsort()
+		print(libbaltcalc.btsub(numtoaddA, numtoaddB))
+	if (USRENTRY==("dev") or USRENTRY==("btdev")):
+		print("first number?")
+		numtoaddA = libbaltcalc.BTstrgetsort()
+		print("second number?")
+		numtoaddB = libbaltcalc.BTstrgetsort()
+		print(libbaltcalc.btdev(numtoaddA, numtoaddB))
 		
 		

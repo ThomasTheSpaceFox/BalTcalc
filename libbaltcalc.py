@@ -13,6 +13,7 @@ def numflip(numtoflip):
 	return(numtoflip[::-1])
 
 #converts balanced ternary numbers to decimal.
+#this is a core function to the library.
 def BTTODEC(NUMTOCONV1):
 	FLIPPEDSTR1=(numflip(NUMTOCONV1))
 	EXTRAP1=0
@@ -26,7 +27,8 @@ def BTTODEC(NUMTOCONV1):
 		EXTRAP1 += 1
 	return (SUMDEC1)
 
-
+#converts decimal numbers to balanced ternary.
+#this is a core function to the library.
 def DECTOBT(NUMTOCONV1):
 	digbat=""
 	while NUMTOCONV1 != 0:
@@ -41,12 +43,42 @@ def DECTOBT(NUMTOCONV1):
 			digbat=("-" + digbat)
 		NUMTOCONV1 = (NUMTOCONV1 + 1) // 3
 	#print NUMTOCONV1
+	#zero exception
+	if (str(digbat)==""):
+		digbat="0"
 	return(digbat)
 	
 
+def btmul(numA, numB):
+	numAcon=BTTODEC(numA)
+	numBcon=BTTODEC(numB)
+	decRes=(numAcon * numBcon)
+	btRes=(DECTOBT(decRes))
+	return(btRes)
 
-#print(DECTOBT2(4476222555666))
-#print(BTTODEC(DECTOBT2(4476222555666)))
+def btadd(numA, numB):
+	numAcon=BTTODEC(numA)
+	numBcon=BTTODEC(numB)
+	decRes=(numAcon + numBcon)
+	btRes=(DECTOBT(decRes))
+	return(btRes)
+
+def btsub(numA, numB):
+	numAcon=BTTODEC(numA)
+	numBcon=BTTODEC(numB)
+	decRes=(numAcon - numBcon)
+	btRes=(DECTOBT(decRes))
+	return(btRes)
+
+#note that values may not be exact. this is due to that the libbaltcalc currently handles whole numbers only.
+def btdev(numA, numB):
+	numAcon=BTTODEC(numA)
+	numBcon=BTTODEC(numB)
+	decRes=(numAcon / numBcon)
+	btRes=(DECTOBT(decRes))
+	return(btRes)
+
+
 
 
 #inverts the positive and negative numerals in a balanced ternary number, 
@@ -83,8 +115,9 @@ def trailzerostrip(numtostri):
 
 
 #prodotype addition function.
+#preserved for its interesting logic
 #eventually will add longer balanced ternary numbers.
-def btadd(numA, numB):
+def btaddreal(numA, numB):
 	#check to ensure any final carries are preformed.
 	numA=("E" + numA)
 	numB=("E" + numB)
@@ -240,34 +273,6 @@ def btadd(numA, numB):
 	buzzt=trailzerostrip(str(resbt))
 	vexping=str(buzzt)
 	return (buzzt)
-
-
-
-# balanced ternary multiplication that heavily relies on the adder function.
-def btmul(numA, numB):
-	btresreg="0"
-	btcnt1="0"
-	for fstdig in numB:
-		firstsym=fstdig
-		break
-	for fstdig2 in numA:
-		firstsym2=fstdig2
-		break
-	while btcnt1!=numB:
-		if firstsym=="-":
-			btresreg=(btadd(numA, btresreg))
-		if firstsym=="+":
-			btresreg=(btadd(btresreg, numA))
-		
-		btcnt1=(btadd(btcnt1, firstsym))
-	#pollarity exemptions (fixes numbers not being correct pollarity.
-	if (fstdig=="-" and fstdig2=="-"):
-		return (BTINVERT(btresreg))
-	if (fstdig=="-" and fstdig2=="+"):
-		return (BTINVERT(btresreg))
-	return (btresreg)
-
-
 
 
 #count up based Decimal to balanced ternary converter.
