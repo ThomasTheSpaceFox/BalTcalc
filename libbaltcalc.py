@@ -12,7 +12,7 @@ import math
 def numflip(numtoflip):
 	return(numtoflip[::-1])
 
-#converts balanced ternary numbers to decimal.
+#converts balanced ternary integers to decimal.
 #this is a core function to the library.
 def BTTODEC(NUMTOCONV1):
 	FLIPPEDSTR1=(numflip(NUMTOCONV1))
@@ -27,7 +27,7 @@ def BTTODEC(NUMTOCONV1):
 		EXTRAP1 += 1
 	return (SUMDEC1)
 
-#converts decimal numbers to balanced ternary.
+#converts decimal integers to balanced ternary.
 #this is a core function to the library.
 def DECTOBT(NUMTOCONV1):
 	digbat=""
@@ -70,7 +70,7 @@ def btsub(numA, numB):
 	btRes=(DECTOBT(decRes))
 	return(btRes)
 
-#note that values may not be exact. this is due to that the libbaltcalc currently handles whole numbers only.
+#note that values may not be exact. this is due to that the libbaltcalc currently handles integer numbers only.
 def btdev(numA, numB):
 	numAcon=BTTODEC(numA)
 	numBcon=BTTODEC(numB)
@@ -81,7 +81,7 @@ def btdev(numA, numB):
 
 
 
-#inverts the positive and negative numerals in a balanced ternary number, 
+#inverts the positive and negative numerals in a balanced ternary integer, 
 #(ie 1T0T would become T101 and vice versa)
 def BTINVERT(numtoinvert):
 	BTINV1 = numtoinvert.replace("-", "P").replace("+", "-").replace("P", "+")
@@ -116,7 +116,8 @@ def trailzerostrip(numtostri):
 
 #prodotype addition function.
 #preserved for its interesting logic
-#eventually will add longer balanced ternary numbers.
+#see how this manages to emulate the logical function of a balanced
+#ternary ripple carry adder of just large enough size to complete the addition
 def btaddreal(numA, numB):
 	#check to ensure any final carries are preformed.
 	numA=("E" + numA)
