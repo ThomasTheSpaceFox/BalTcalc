@@ -70,11 +70,11 @@ def btsub(numA, numB):
 	btRes=(DECTOBT(decRes))
 	return(btRes)
 
-#note that values may not be exact. this is due to that the libbaltcalc currently handles integer numbers only.
+#note that values may not be exact. this is due to that the libbaltcalc currently handles integers only.
 def btdev(numA, numB):
 	numAcon=BTTODEC(numA)
 	numBcon=BTTODEC(numB)
-	decRes=(numAcon / numBcon)
+	decRes=int(numAcon / numBcon)
 	btRes=(DECTOBT(decRes))
 	return(btRes)
 
